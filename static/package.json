@@ -1,0 +1,27 @@
+{
+  "name": "kiss-cam-static",
+  "version": "1.0.0",
+  "description": "婚禮Kiss Cam拉霸機 靜態網頁版",
+  "scripts": {
+    "start": "http-server -c-1 -p 8080 ."
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "files": [
+    "node_modules/",
+    "npm-debug.log*",
+    "yarn-debug.log*",
+    "yarn-error.log*",
+    "dist/",
+    "build/",
+    ".DS_Store",
+    "Thumbs.db",
+    ".env",
+    ".env.*",
+    "*.log",
+    "*.tmp",
+    "*.swp",
+    ".vscode/"
+  ]
+}

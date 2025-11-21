@@ -1,37 +1,43 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>動態Kiss Cam拉霸機</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="game-container">
         <button class="reset-button" id="resetButton" onclick="resetGame()">🔄 重設</button>
-        
+        <button class="sound-toggle" id="soundToggle" onclick="toggleSound()">🔊</button>
+
         <h1 class="title" id="gameTitle">🎰 載入中... 💕</h1>
-        
+
         <div class="config-section" id="configSection">
             <div class="config-status" id="configStatus">
-                <h3 style="color: #831843; margin-bottom: 20px; font-size: 1.8rem;">正在載入設定檔案...</h3>
+                <h3 class="config-heading">正在載入設定檔案...</h3>
                 <div class="loading-spinner">⏳</div>
             </div>
-            
+
             <div class="config-preview" id="configPreview" style="display: none;">
-                <h3 style="color: #831843; margin-bottom: 20px; font-size: 1.8rem;">設定檔案載入成功！</h3>
+                <h3 class="config-heading">設定檔案載入成功！</h3>
                 <div class="preview-grid" id="previewGrid"></div>
-                <div style="margin: 20px 0; color: #831843; font-size: 1.2rem;">
+                <div class="config-info">
                     <div> <span id="titlePreview"></span></div>
                     <div>動作數量: <span id="countPreview"></span> 個</div>
                 </div>
                 <button class="start-game-btn" id="startGameBtn" onclick="startGame()">開始遊戲</button>
             </div>
-            
+
             <div class="config-error" id="configError" style="display: none;">
-                <h3 style="color: #dc2626; margin-bottom: 20px; font-size: 1.8rem;">⚠️ 設定檔案載入失敗</h3>
-                <p style="color: #7f1d1d; margin-bottom: 20px;">請確認同目錄下有 config.txt 檔案</p>
-                <div style="background: #fef2f2; padding: 20px; border-radius: 10px; text-align: left; color: #7f1d1d; font-size: 0.9rem;">
+                <h3 class="error-heading">⚠️ 設定檔案載入失敗</h3>
+                <p class="error-text">請確認同目錄下有 config.txt 檔案</p>
+                <div class="error-box">
                     <strong>config.txt 格式範例：</strong><br>
                     title=🎰 婚禮Kiss Cam拉霸機 💕<br>
                     action1=親吻 💋,kiss.jpg<br>
@@ -40,7 +46,7 @@
                     action4=比心 🥰,heart.jpg<br>
                     action5=飛吻 😘,blow_kiss.jpg
                 </div>
-                <button class="start-game-btn" onclick="loadConfig()" style="background: #dc2626;">重新載入設定</button>
+                <button class="start-game-btn error-btn" onclick="loadConfig()">重新載入設定</button>
             </div>
         </div>
 
@@ -72,7 +78,7 @@
                 🎰 拉霸開始！
             </button>
 
-            <button class="spin-button" id="nextButton" onclick="spinSlots()" style="display: none; background: linear-gradient(135deg, #f472b6, #ec4899);">
+            <button class="spin-button" id="nextButton" onclick="spinSlots()" style="display: none;">
                 💖 下一個甜蜜動作
             </button>
         </div>
@@ -88,5 +94,6 @@
     </div>
 
     <script src="main.js"></script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97c3e4c5a341826d',t:'MTc1NzM5MTYzMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
+
 </html>

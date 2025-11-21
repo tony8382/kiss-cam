@@ -298,3 +298,159 @@ function showCelebration() {
         }
     }, 1500);
 }
+
+// 音效管理
+class SoundManager {
+    constructor() {
+        this.sounds = {
+            click: new Audio('sounds/click.mp3'),
+            spin: new Audio('sounds/spin.mp3'),
+            stop: new Audio('sounds/stop.mp3'),
+            win: new Audio('sounds/win.mp3')
+        };
+        this.isMuted = false;
+
+        // 設定循環播放
+        this.sounds.spin.loop = true;
+
+        // 預加載
+        Object.values(this.sounds).forEach(sound => {
+            sound.load();
+            sound.volume = 0.5;
+        });
+    }
+
+    play(name) {
+        if (this.isMuted || !this.sounds[name]) return;
+
+        const sound = this.sounds[name];
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log('Audio play failed:', e));
+    }
+
+    stop(name) {
+        if (!this.sounds[name]) return;
+        const sound = this.sounds[name];
+        sound.pause();
+        sound.currentTime = 0;
+    }
+
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+
+        // 如果正在播放循環音效，也要處理
+        if (this.isMuted) {
+            this.stop('spin');
+        }
+
+        return this.isMuted;
+    }
+}
+
+const soundManager = new SoundManager();
+
+function toggleSound() {
+    const isMuted = soundManager.toggleMute();
+    const btn = document.getElementById('soundToggle');
+    btn.textContent = isMuted ? '🔇' : '🔊';
+    btn.classList.toggle('muted', isMuted);
+}
+
+// Add sound triggers to existing functions
+const originalStartGame = startGame;
+startGame = function () {
+    soundManager.play('click');
+    originalStartGame();
+};
+
+const originalResetGame = resetGame;
+resetGame = function () {
+    soundManager.play('click');
+    originalResetGame();
+};
+
+const originalSpinSlots = spinSlots;
+spinSlots = function () {
+    soundManager.play('click');
+    soundManager.play('spin');
+    originalSpinSlots();
+};
+
+// Modify animateSlots to stop spin sound and play stop sound
+const originalAnimateSlots = animateSlots;
+animateSlots = function (targetIndex) {
+    const reels = [
+        document.getElementById('reel1'),
+        document.getElementById('reel2'),
+        document.getElementById('reel3')
+    ];
+
+    let completedReels = 0;
+
+    reels.forEach((reel, reelIndex) => {
+        let spinCount = 0;
+        const maxSpins = 30 + (reelIndex * 10);
+
+        const spinInterval = setInterval(() => {
+            const randomOffset = Math.random() * (gameConfig.actions.length * 100);
+            reel.style.transform = `translateY(-${randomOffset}px)`;
+            spinCount++;
+
+            if (spinCount >= maxSpins) {
+                clearInterval(spinInterval);
+
+                // Play stop sound
+                soundManager.play('stop');
+
+                const targetPosition = (targetIndex * 100) + 150;
+                reel.style.transform = `translateY(-${targetPosition}px)`;
+                reel.style.transition = 'transform 0.5s ease-out';
+
+                completedReels++;
+
+                if (completedReels === 3) {
+                    soundManager.stop('spin');
+                    setTimeout(() => {
+                        showResult(targetIndex);
+                    }, 500);
+                }
+            }
+        }, 50);
+    });
+};
+
+const originalShowResult = showResult;
+showResult = function (selectedIndex) {
+    soundManager.play('win');
+    // Copy of original showResult logic to avoid recursion issues if we just wrapped it
+    // But since showResult calls initializeSlots which is safe, we can just copy the body or wrap it carefully.
+    // To be safe and clean, let's just use the original logic but we need to replace the function entirely 
+    // because animateSlots calls the global showResult.
+
+    showCelebration();
+    initializeSlots();
+
+    setTimeout(() => {
+        const selectedAction = document.getElementById('selectedAction');
+        selectedAction.innerHTML = `
+                        <div style="font-size: 1.8rem; margin-bottom: 15px;">恭喜抽中：${gameConfig.actions[selectedIndex].name}</div>
+                        <div style="font-size: 1rem; color: #e2e8f0;">準備展現甜蜜時刻！</div>
+                    `;
+        selectedAction.classList.add('show');
+
+        setTimeout(() => {
+            showFullscreen(selectedIndex);
+        }, 500);
+
+        document.getElementById('actionCount').textContent = actionCount;
+        document.getElementById('remainingCount').textContent = getAvailableActions().length;
+
+        if (getAvailableActions().length > 0) {
+            document.getElementById('nextButton').style.display = 'inline-block';
+        } else {
+            selectedAction.innerHTML += '<br><div style="font-size: 1.2rem; margin-top: 15px;">🎉 所有動作都完成了！點擊重設開始新一輪 🎉</div>';
+        }
+
+        isSpinning = false;
+    }, 1000);
+};

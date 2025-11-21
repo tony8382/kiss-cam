@@ -71,7 +71,7 @@ body {
 .sound-toggle {
     position: absolute;
     top: 30px;
-    right: 130px;
+    right: 160px;
     /* Positioned to the left of reset button */
     background: #fff;
     color: #ec4899;

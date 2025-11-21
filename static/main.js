@@ -240,7 +240,7 @@ function showResult(selectedIndex) {
         const selectedAction = document.getElementById('selectedAction');
         selectedAction.innerHTML = `
                         <div style="font-size: 1.8rem; margin-bottom: 15px;">恭喜抽中：${gameConfig.actions[selectedIndex].name}</div>
-                        <div style="font-size: 1rem; color: #e2e8f0;">準備展現甜蜜時刻！</div>
+                        <div style="font-size: 1rem; color: #536173;">準備展現甜蜜時刻！</div>
                     `;
         selectedAction.classList.add('show');
 
@@ -434,7 +434,7 @@ showResult = function (selectedIndex) {
         const selectedAction = document.getElementById('selectedAction');
         selectedAction.innerHTML = `
                         <div style="font-size: 1.8rem; margin-bottom: 15px;">恭喜抽中：${gameConfig.actions[selectedIndex].name}</div>
-                        <div style="font-size: 1rem; color: #e2e8f0;">準備展現甜蜜時刻！</div>
+                        <div style="font-size: 1rem; color: #536173;">準備展現甜蜜時刻！</div>
                     `;
         selectedAction.classList.add('show');
 

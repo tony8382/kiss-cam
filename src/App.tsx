@@ -184,34 +184,34 @@ function App() {
             </div>
 
             {/* Top Bar */}
-            <div className="w-full max-w-6xl flex justify-between items-center p-6 z-10">
-                <div className="flex gap-4">
+            <div className="w-full max-w-6xl flex justify-between items-center p-3 md:p-6 z-10">
+                <div className="flex gap-2 md:gap-4">
                     <button
-                        className="text-4xl p-4 bg-white/10 backdrop-blur-xl rounded-3xl hover:bg-white/20 transition-all border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] group active:scale-95"
+                        className="text-2xl md:text-4xl p-2 md:p-4 bg-white/10 backdrop-blur-xl rounded-2xl md:rounded-3xl hover:bg-white/20 transition-all border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] group active:scale-95"
                         onClick={() => { if (!muted) playClick(); setMuted(!muted); }}
                     >
                         <span className="group-hover:scale-110 inline-block transition-transform">{muted ? '🔇' : '🔊'}</span>
                     </button>
                     <button
-                        className="text-4xl p-4 bg-white/10 backdrop-blur-xl rounded-3xl hover:bg-white/20 transition-all border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] group active:scale-95"
+                        className="text-2xl md:text-4xl p-2 md:p-4 bg-white/10 backdrop-blur-xl rounded-2xl md:rounded-3xl hover:bg-white/20 transition-all border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] group active:scale-95"
                         onClick={() => { if (!muted) playClick(); setShowInstructions(true); }}
                     >
                         <span className="group-hover:rotate-12 inline-block transition-transform">📝</span>
                     </button>
                     <button
-                        className="text-4xl p-4 bg-white/10 backdrop-blur-xl rounded-3xl hover:bg-white/20 transition-all border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] group active:scale-95"
+                        className="text-2xl md:text-4xl p-2 md:p-4 bg-white/10 backdrop-blur-xl rounded-2xl md:rounded-3xl hover:bg-white/20 transition-all border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.1)] group active:scale-95"
                         onClick={() => { if (!muted) playClick(); setShowThemePicker(true); }}
                     >
                         <span className="group-hover:scale-110 inline-block transition-transform">🎨</span>
                     </button>
                 </div>
                 <button
-                    className="bg-white/10 backdrop-blur-xl hover:bg-white/20 px-10 py-5 rounded-full text-xl font-black transition-all border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.15)] flex items-center gap-3 active:scale-95 group"
+                    className="bg-white/10 backdrop-blur-xl hover:bg-white/20 px-4 py-2 md:px-10 md:py-5 rounded-full text-base md:text-xl font-black transition-all border border-white/30 shadow-[0_8px_32px_rgba(0,0,0,0.15)] flex items-center gap-2 md:gap-3 active:scale-95 group"
                     style={{ color: currentTheme.colors.text }}
                     onClick={() => { if (!muted) playClick(); setShowResetModal(true); }}
                 >
                     <span className="group-hover:rotate-180 transition-transform duration-700">🔄</span>
-                    <span className="hidden md:inline">重設遊戲</span>
+                    <span className="hidden sm:inline">重設遊戲</span>
                 </button>
             </div>
 
@@ -300,13 +300,13 @@ function App() {
 
             {/* instructions Modal (Fancy) */}
             {showInstructions && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-xl animate-in fade-in duration-500">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-black/60 backdrop-blur-xl animate-in fade-in duration-500">
                     <div
-                        className="rounded-[4rem] p-12 max-w-xl w-full shadow-[0_40px_100px_rgba(0,0,0,0.5)] space-y-10 border border-white/20 relative overflow-hidden animate-in zoom-in duration-500"
+                        className="rounded-[2.5rem] md:rounded-[4rem] p-6 md:p-12 max-w-xl w-full shadow-[0_40px_100px_rgba(0,0,0,0.5)] space-y-6 md:space-y-10 border border-white/20 relative overflow-hidden animate-in zoom-in duration-500 max-h-[90vh] overflow-y-auto"
                         style={{ background: currentTheme.gradients.card }}
                     >
-                        <h2 className="text-3xl md:text-5xl font-black text-center tracking-tight" style={{ color: currentTheme.colors.text }}>遊戲說明 📜</h2>
-                        <div className="space-y-4 md:space-y-6 text-lg md:text-xl font-bold leading-relaxed" style={{ color: currentTheme.colors.text }}>
+                        <h2 className="text-2xl md:text-5xl font-black text-center tracking-tight" style={{ color: currentTheme.colors.text }}>遊戲說明 📜</h2>
+                        <div className="space-y-3 md:space-y-6 text-base md:text-xl font-bold leading-relaxed" style={{ color: currentTheme.colors.text }}>
                             <div className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-2xl md:rounded-3xl bg-white/5 border border-white/10">
                                 <span className="text-2xl md:text-3xl">🚀</span>
                                 <p>點擊「進入遊戲」展開每一場獨特的發現旅程。</p>
@@ -325,7 +325,7 @@ function App() {
                             </div>
                         </div>
                         <button
-                            className="w-full py-5 md:py-7 rounded-full text-white font-black text-2xl md:text-3xl transition-all active:scale-95 shadow-2xl border-b-8 border-black/20"
+                            className="w-full py-4 md:py-5 rounded-full text-white font-black text-xl md:text-2xl transition-all active:scale-95 shadow-2xl border-b-8 border-black/20"
                             style={{ background: currentTheme.gradients.primary }}
                             onClick={() => { if (!muted) playClick(); setShowInstructions(false); }}
                         >
@@ -337,28 +337,28 @@ function App() {
 
             {/* Theme Picker (Fancy) */}
             {showThemePicker && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/50 backdrop-blur-xl animate-in fade-in duration-500">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 bg-black/50 backdrop-blur-xl animate-in fade-in duration-500">
                     <div
-                        className="rounded-[4rem] p-10 max-w-4xl w-full shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/20 space-y-10 animate-in slide-in-from-bottom duration-500"
+                        className="rounded-[2.5rem] md:rounded-[4rem] p-6 md:p-10 max-w-4xl w-full shadow-[0_40px_100px_rgba(0,0,0,0.6)] border border-white/20 space-y-6 md:space-y-10 animate-in slide-in-from-bottom duration-500 max-h-[90vh] overflow-y-auto"
                         style={{ background: currentTheme.gradients.card }}
                     >
-                        <h2 className="text-4xl font-black text-center tracking-tight" style={{ color: currentTheme.colors.text }}>切換時空背景 🔮</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <h2 className="text-2xl md:text-4xl font-black text-center tracking-tight" style={{ color: currentTheme.colors.text }}>切換時空背景 🔮</h2>
+                        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                             {themes.map(t => (
                                 <button
                                     key={t.id}
-                                    className={`p-8 rounded-[3rem] border-4 transition-all hover:scale-105 group relative overflow-hidden ${currentTheme.id === t.id ? 'border-white shadow-[0_0_30px_rgba(255,255,255,0.4)]' : 'border-transparent shadow-xl'}`}
+                                    className={`p-4 md:p-8 rounded-[2rem] md:rounded-[3rem] border-2 md:border-4 transition-all hover:scale-105 group relative overflow-hidden ${currentTheme.id === t.id ? 'border-white shadow-[0_0_30px_rgba(255,255,255,0.4)]' : 'border-transparent shadow-xl'}`}
                                     style={{ background: t.gradients.background }}
                                     onClick={() => changeTheme(t)}
                                 >
                                     <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity bg-white" />
-                                    <div className="relative z-10 text-6xl mb-6 drop-shadow-lg group-hover:animate-bounce">{t.icon}</div>
-                                    <div className="relative z-10 font-black text-xl leading-tight" style={{ color: t.colors.text }}>{t.name}</div>
+                                    <div className="relative z-10 text-4xl md:text-6xl mb-3 md:mb-6 drop-shadow-lg group-hover:animate-bounce">{t.icon}</div>
+                                    <div className="relative z-10 font-black text-sm md:text-xl leading-tight" style={{ color: t.colors.text }}>{t.name}</div>
                                 </button>
                             ))}
                         </div>
                         <button
-                            className="w-full bg-white/10 hover:bg-white/20 py-7 rounded-[3rem] text-2xl font-black transition-all border border-white/20"
+                            className="w-full bg-white/10 hover:bg-white/20 py-4 md:py-7 rounded-[2rem] md:rounded-[3rem] text-lg md:text-2xl font-black transition-all border border-white/20"
                             style={{ color: currentTheme.colors.text }}
                             onClick={() => setShowThemePicker(false)}
                         >

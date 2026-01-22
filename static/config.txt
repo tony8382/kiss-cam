@@ -1,6 +1,0 @@
-title=🎰 Kiss Cam 拉霸機 💕
-action1=對視比愛心 💖,對視比愛心.png
-action2=捏臉 🥰,捏臉.png
-action3=親親 💋,接吻.png
-action4=親臉頰 🤗,親臉頰.png
-action5=靠頭比花 😘,靠肩膀.png

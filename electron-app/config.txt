@@ -1,6 +1,0 @@
-title=🎰 婚禮Kiss Cam拉霸機 💕
-action1=親吻 💋,kiss.jpg
-action2=擁抱 🤗,hug.jpg
-action3=跳舞 💃,dance.jpg
-action4=比心 🥰,heart.jpg
-action5=飛吻 😘,blow_kiss.jpg
